@@ -77,20 +77,16 @@ class VegaWebInterface:
     def web_speak(self, text):
         """Modified speak function that emits to frontend"""
         try:
+            if os.environ.get('RENDER', 'false').lower() == 'true':
+                print(f"🗣️ VEGA (text-only): {text}")
+                message = self.add_to_history('assistant', text)
+                self.emit_to_frontend('assistant_speaking', message)
+                return
             print(f"🗣️ VEGA Speaking: {text}")
-            
-            # Add to history first
             message = self.add_to_history('assistant', text)
-            
-            # Emit to frontend that assistant is speaking
             self.emit_to_frontend('assistant_speaking', message)
-            
-            # Use your existing speak function
             speak(text)
-            
-            # Emit that speaking is finished
             self.emit_to_frontend('assistant_finished_speaking', {})
-            
         except Exception as e:
             print(f"❌ Web speak error: {e}")
             error_msg = self.add_to_history('system', f"Error: {str(e)}")
@@ -99,20 +95,17 @@ class VegaWebInterface:
     def web_takeCommand(self):
         """Modified takeCommand that emits real-time updates"""
         try:
+            if os.environ.get('RENDER', 'false').lower() == 'true':
+                print("🎤 Voice input disabled on Render. Use text commands.")
+                return "none"
             self.is_listening = True
             self.emit_to_frontend('listening_started', {})
             print("🎤 Starting to listen...")
-            
-            # Use your existing takeCommand function
             query = takeCommand()
-            
             self.is_listening = False
             self.emit_to_frontend('listening_stopped', {})
-            
             if query and query.lower() != "none":
                 print(f"🗣️ User said: {query}")
-                
-                # Add to history and emit user's speech to frontend
                 message = self.add_to_history('user', query)
                 self.emit_to_frontend('user_spoke', message)
                 return query
@@ -121,7 +114,6 @@ class VegaWebInterface:
                 message = self.add_to_history('system', "No speech detected. Please try again.")
                 self.emit_to_frontend('no_speech_detected', message)
                 return "none"
-                
         except Exception as e:
             print(f"❌ Web takeCommand error: {e}")
             self.is_listening = False
@@ -332,11 +324,4 @@ def handle_clear_history():
     emit('chat_history_cleared', {})
 
 if __name__ == '__main__':
-    print("🚀 Starting VEGA Voice Assistant Web Interface...")
-    print("📡 WebSocket server integrating with existing VEGA modules")
-    print("🌐 Backend running at: http://localhost:5000")
-    print("🔗 Health check: http://localhost:5000/health")
-    print("🧪 Test route: http://localhost:5000/test")
-    print("📝 Chat history: http://localhost:5000/chat-history")
-    
-    socketio.run(app, host='0.0.0.0', port=5000, debug=True, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
