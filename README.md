@@ -1,7 +1,3 @@
-Below is an enhanced and professionally structured version of your `README.md` for your GitHub repository. I've improved readability, organization, visual appeal, and adherence to GitHub README best practices (e.g., clear sections, badges, table of contents, and consistent formatting). I've also added placeholders for missing screenshots and refined the content to make it more concise yet comprehensive.
-
----
-
 # V.E.G.A - Voice-Enabled Genius Assistant
 
 <div align="center">
@@ -67,14 +63,13 @@ V.E.G.A (Voice-Enabled Genius Assistant) is an innovative voice assistant that c
 
 | **State**                | **Description**                          | **Image**                     |
 |---------------------------|------------------------------------------|--------------------------------|
-| Main Interface - Idle     | Subtle glow with rotating icon.          | ![Idle State](add-image-url)  |
-| Listening State           | Green animated rings expanding outward.  | ![Listening State](add-image-url) |
-| Speaking State            | Blue sound wave bars with pulsing.       | ![Speaking State](add-image-url) |
-| Command Input Interface   | Minimal text input box.                  | ![Command Input](add-image-url) |
-| Mobile Responsive View    | Compact design for mobile devices.       | ![Mobile View](add-image-url) |
-| Railway Deployment        | Dashboard showing frontend and backend.  | ![Railway Dashboard](add-image-url) |
+| Main Interface - Idle     | Subtle glow with rotating icon.          | (<img width="1920" height="1200" alt="Screenshot (593)" src="https://github.com/user-attachments/assets/d1bc18e1-dc57-491f-aff7-323381baed28" />
+)  |
+| Listening State           | Green animated rings expanding outward.  | (<img width="1920" height="1200" alt="Screenshot (594)" src="https://github.com/user-attachments/assets/ca1fb498-316f-428b-bae3-498f79483f3b" />
+) |
+| Command Input Interface   | Minimal text input box.                  | (<img width="1920" height="1200" alt="Screenshot (595)" src="https://github.com/user-attachments/assets/4c7ca3e3-cf15-45d5-a7b0-2c0647ae9350" />
+) |
 
-*Note*: Replace `add-image-url` with actual image links hosted on GitHub or an image service (e.g., Imgur).
 
 ---
 
@@ -95,7 +90,7 @@ V.E.G.A (Voice-Enabled Genius Assistant) is an innovative voice assistant that c
 - **Python Speech Libraries** - Speech synthesis and recognition (e.g., `pyttsx3`, `vosk`).
 
 ### Deployment & Infrastructure
-- **[Railway](https://railway.app/)** - Cloud platform for deployment.
+- **[Railway](https://railway.app/)** - Cloud platform for deployment. (Still in progress)
 - **[GitHub](https://github.com/)** - Version control and CI/CD.
 - **HTTPS/WSS** - Secure communication.
 
